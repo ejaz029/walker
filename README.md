@@ -164,14 +164,33 @@ python -m pytest -q
 
 ## Docker
 
-Docker support has not yet been documented as verified. The following commands require a `Dockerfile` and, if using Compose, a `docker-compose.yml` to be added to the repository before they will work.
+### Prerequisites
 
-Example commands once those files are provided:
+- Docker Desktop installed and running.
+
+### Run the backend
+
+From the repository root:
 
 ```bash
-docker build -t windscope .
-docker run -p 8000:8000 windscope
+docker compose up --build
 ```
+
+The backend will be available at:
+
+- API: http://localhost:8000
+- Health check: http://localhost:8000/health
+- API documentation: http://localhost:8000/docs
+- Summary metrics: http://localhost:8000/api/summary?cutoff_hour=12&cutoff_minute=0
+
+To stop the container, press `Ctrl+C`. To remove the container and network afterward, run:
+
+```bash
+docker compose down
+```
+
+The Docker setup packages the FastAPI backend and the January 2026 Elexon datasets. The React frontend is run separately using the local development instructions above.
+
 
 ## API endpoints
 
