@@ -1,7 +1,6 @@
 # WALKER — UK Wind Forecast Accuracy Dashboard
 
 **Live dashboard:** https://walker-mu.vercel.app/  
-**Backend API:** https://windscope-api-1jk6.onrender.com  
 **API documentation:** https://windscope-api-1jk6.onrender.com/docs
 
 ## Overview
