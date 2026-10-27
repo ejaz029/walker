@@ -5,7 +5,7 @@
 
 ## Overview
 
-WindScope evaluates the accuracy of day-ahead wind generation forecasts for Great Britain using Elexon data. It provides quantitative error metrics and interval-level comparisons to help users understand forecast uncertainty before electricity purchasing decisions.
+Walker evaluates the accuracy of day ahead wind generation forecasts for Great Britain using Elexon data. It provides quantitative error metrics and interval-level comparisons to help users understand forecast uncertainty before electricity purchasing decisions.
 
 The analysis covers January 2026 and compares hourly forecasts with hourly actual generation.
 
