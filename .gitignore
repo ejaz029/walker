@@ -8,6 +8,8 @@ node_modules/
 dist/
 .pytest_cache/
 data/raw/*
+!data/raw/fuelhh_jan2026.json
+!data/raw/windfor_jan2026.json
 !data/raw/.gitkeep
 
 .venvREi/
