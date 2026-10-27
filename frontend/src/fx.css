@@ -1,0 +1,131 @@
+/* fx.css — import AFTER App.css */
+.app-shell { position: relative; isolation: isolate; }
+
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: #05090f;
+}
+.aurora::before, .aurora::after {
+  content: "";
+  position: absolute;
+  width: 60vmax;
+  height: 60vmax;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: .28;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+.aurora::before {
+  background: radial-gradient(circle, #18e0ae, transparent 65%);
+  top: -20vmax;
+  left: 10vmax;
+}
+.aurora::after {
+  background: radial-gradient(circle, #5b7cff, transparent 65%);
+  bottom: -25vmax;
+  right: -10vmax;
+  animation-delay: -9s;
+}
+.aurora i {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(#ffffff08 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff08 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 75%);
+}
+@keyframes drift { to { transform: translate(8vmax, 6vmax) scale(1.15); } }
+
+/* Glassmorphism */
+.sidebar { background: #0b141dcc; backdrop-filter: blur(16px); }
+.kpi-card, .panel, .method-note, .data-status {
+  background: #0f1a26aa;
+  backdrop-filter: blur(14px) saturate(140%);
+  border-color: #ffffff14;
+}
+
+/* Cursor spotlight + hover lift */
+.kpi-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+.kpi-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), #3bd6a726, transparent 60%);
+}
+.kpi-card:hover {
+  transform: translateY(-4px);
+  border-color: #3bd6a755;
+  box-shadow: 0 12px 40px #3bd6a722;
+}
+.kpi-card:hover::before { opacity: 1; }
+
+/* Neon top-edge on panels */
+.panel { position: relative; }
+.panel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #4dd7b0, #739cff, transparent);
+  pointer-events: none;
+}
+
+/* Shimmering gradient title */
+h1 {
+  background: linear-gradient(90deg, #fff, #5be0ba, #8aa8ff, #fff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 6s linear infinite;
+}
+@keyframes shine { to { background-position: 200% center; } }
+
+/* Glow + pulse */
+.brand-mark { box-shadow: 0 0 24px #43d7ac44; }
+.nav-link.active { box-shadow: inset 0 0 18px #43d7ac1a, 0 0 14px #43d7ac22; }
+.status-dot, .source-indicator span { animation: pulse 2s infinite; }
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 #3bd6a799; }
+  100% { box-shadow: 0 0 0 12px #3bd6a700; }
+}
+.recharts-area-curve, .recharts-line-curve { filter: drop-shadow(0 0 5px #36d5a488); }
+
+/* Staggered entrance */
+.kpi-card, .panel, .method-note { animation: rise .7s cubic-bezier(.2, .8, .2, 1) both; }
+.kpi-card:nth-child(2) { animation-delay: .08s; }
+.kpi-card:nth-child(3) { animation-delay: .16s; }
+.kpi-card:nth-child(4) { animation-delay: .24s; }
+@keyframes rise { from { opacity: 0; transform: translateY(20px); } }
+
+/* Procurement buffer card styles; the component can use these when added. */
+.risk h2 { font-size: 20px; line-height: 1.4; margin-top: 8px; font-weight: 560; }
+.risk h2 b { color: #f5b45f; text-shadow: 0 0 18px #f5b45f66; font-size: 28px; }
+.risk-bar { height: 10px; border-radius: 99px; background: #1b2a38; margin: 18px 0 10px; overflow: hidden; }
+.risk-bar div {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #36d5a4, #f5b45f, #ff6b7a);
+  transition: width 1.2s cubic-bezier(.2, .8, .2, 1);
+  box-shadow: 0 0 14px #f5b45f66;
+}
+.risk p { color: #8ea1b5; font-size: 11px; margin: 0; }
+
+/* Respect device accessibility settings. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+}
