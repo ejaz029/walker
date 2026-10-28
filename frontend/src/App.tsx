@@ -66,10 +66,9 @@ function App() {
   const [showActual, setShowActual] = useState(true);
   const [showForecast, setShowForecast] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [cutoffHour, setCutoffHour] = useState(12);
-  const [cutoffMinute, setCutoffMinute] = useState(0);
-  const [appliedCutoff, setAppliedCutoff] = useState({ hour: 12, minute: 0 });
-
+  const [cutoffHour, setCutoffHour] = useState(9);
+  const [cutoffMinute, setCutoffMinute] = useState(50);
+  const [appliedCutoff, setAppliedCutoff] = useState({ hour: 9, minute: 50 });
 
   async function loadData(hour = appliedCutoff.hour, minute = appliedCutoff.minute) {
     setLoading(true);
@@ -98,7 +97,7 @@ function App() {
     }
   }
 
-  useEffect(() => { void loadData(12, 0); }, []);
+  useEffect(() => { void loadData(9, 50); }, []);
 
   const chartData = useMemo(() => forecasts.map((item) => ({
     ...item,
@@ -198,7 +197,7 @@ function App() {
             </label>
             <label>Minute
               <select value={cutoffMinute} onChange={(e) => setCutoffMinute(Number(e.target.value))}>
-                {[0, 15, 30, 45].map((m) => <option key={m} value={m}>{String(m).padStart(2, "0")}</option>)}
+                {[0, 15, 30, 45, 50].map((m) => <option key={m} value={m}>{String(m).padStart(2, "0")}</option>)}
               </select>
             </label>
             <button className="button-secondary" onClick={() => void loadData(cutoffHour, cutoffMinute)} disabled={loading}>
