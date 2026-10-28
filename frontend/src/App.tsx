@@ -204,8 +204,7 @@ function App() {
               Apply cutoff
             </button>
           </div>
-          <div className="cutoff-warning"><CircleHelp size={14} /> Provisional assumption — verify the purchasing decision deadline before operational use.</div>
-        </section>
+          <div className="cutoff-warning"><CircleHelp size={14} /> Based on the N2EX day-ahead auction deadline (09:50 UK time).</div>        </section>
 
         {error && <div className="error-banner">{error}</div>}
         {!summary && !error && <div className="loading-state">Loading January wind data…</div>}
